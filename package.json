@@ -1,0 +1,12 @@
+{
+  "name": "ura-game",
+  "version": "0.0.0",
+  "private": true,
+  "description": "おぼろ団地（仮）の企画リポジトリ。CI・公開前チェック・秘密ファイル防止・Claude のガードは tenmusu10/teck-matome から持ち込み",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tools/secret-check.test.mjs tools/release-check.test.mjs tools/kit-config.test.mjs .claude/hooks/guard.test.mjs",
+    "release:check": "node tools/release-check.mjs",
+    "secret:check": "node tools/secret-check.mjs"
+  }
+}
