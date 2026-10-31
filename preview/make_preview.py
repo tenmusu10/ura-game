@@ -72,6 +72,7 @@ def idle_frames(im, feet_from=27):
         f = Image.new('RGBA',im.size,(0,0,0,0))
         top = im.crop((0,0,im.width,feet_from))
         f.paste(im.crop((0,feet_from,im.width,im.height)),(0,feet_from))
+        if dy<0: f.paste(im.crop((0,feet_from,im.width,feet_from+1)),(0,feet_from-1))
         f.alpha_composite(top,(0,dy)) if dy>=0 else f.alpha_composite(top.crop((0,-dy,im.width,feet_from)),(0,0))
         frames.append(f)
     return frames
@@ -248,3 +249,80 @@ D.text((1020,820),"水色の枠＝夜回りに選んだ部屋",font=font,fill=hx
 place(tags,8,1020,870,"こせい札 8×8（赤青緑黄白紫）",bgc=hx('F4F1F8'))
 sheet2.convert('RGB').save(OUT+"preview_sheet.png")
 print("ok")
+
+# =================== 主人公とカゲモリ ===================
+C.update({'Y':hx('FFC857'),'y':hx('C97F5A'),'J':hx('3F7FA6'),'j':hx('241C3A'),'K':hx('9A97B0'),'N':hx('F4F1F8')})
+hero_rows = [
+"........................",
+"........O.OOOOOO.O......",
+".......OhOhhhhhhOhO.....",
+".....OOhhhhhhhhhhOO.....",
+"....OhhhhhhhhhhhhhhO....",
+] + yuzu[5:15] + [
+"......OOYYYYYYYYOO......",
+".....OYYYONNNNOYYYO.....",
+"....OYYyONNNNNNOyYYO....",
+"....OYYyONNKKNNOyYYO....",
+"....OYYyONNKNNNOyYYO....",
+"....OSSOYNNNNNNYOSSO....",
+".....OOOYYNNNNYyOOO.....",
+".......OYYNNNNYyO.......",
+".......OJJJJJJJJO.......",
+".......OJJJJJJJjO.......",
+"........OJJO.OJjO.......",
+"........OJJO.OJjO.......",
+"........OJJO.OJjO.......",
+".......ONNNO.ONNNO......",
+".......OOOOO.OOOOO......",
+"........................",
+]
+hero = from_rows(hero_rows,24,32)
+# key string
+for (x,y) in [(10,16),(11,17),(13,16),(12,17)]: hero.putpixel((x,y),hx('C97F5A'))
+
+def walk_frames(im, split=25):
+    top = im.crop((0,0,24,split))
+    L = im.crop((0,split,12,32)); R = im.crop((12,split,24,32))
+    out=[]
+    for body,ly,ry in [(0,0,0),(1,-2,0),(0,-1,0),(0,0,0),(1,0,-2),(0,0,-1)]:
+        f = Image.new('RGBA',(24,32),(0,0,0,0))
+        f.alpha_composite(L,(0,split+ly)); f.alpha_composite(R,(12,split+ry))
+        f.alpha_composite(top,(0,body))
+        out.append(f)
+    return out
+
+def save_anim(frames, name, ms):
+    sheet = Image.new('RGBA',(24*len(frames),32),(0,0,0,0))
+    for i,f in enumerate(frames): sheet.paste(f,(24*i,0))
+    sheet.save(OUT+name+"_strip.png")
+    ups=[up(f,10) for f in frames]
+    ups[0].save(OUT+name+".gif",save_all=True,append_images=ups[1:],duration=ms,loop=0,disposal=2,transparency=0)
+
+hero.save(OUT+"hero_24x32.png")
+hero_idle = idle_frames(hero); hero_walk = walk_frames(hero)
+save_anim(hero_idle,"hero_idle",166); save_anim(hero_walk,"hero_walk",100)
+
+# カゲモリ：主人公の顔立ち＋サカキの鍵束、色だけ裏のパレット
+night = {hx('FCE3C6'):hx('B07CD9'),hx('F2B98A'):hx('7A5FB8'),hx('C97F5A'):hx('3A2D5C'),hx('8C6E5D'):hx('241C3A'),
+         hx('FFC857'):hx('6B6FA3'),hx('F4F1F8'):hx('8FA3C7'),hx('3F7FA6'):hx('3A2D5C'),hx('241C3A'):hx('120F1F'),hx('9A97B0'):hx('4FF2E0')}
+kage_mori = hero.copy()
+for y in range(32):
+    for x in range(24):
+        p = kage_mori.getpixel((x,y))
+        if p in night: kage_mori.putpixel((x,y),night[p])
+for (x,y) in [(7,8),(7,9),(15,8),(15,9)]: kage_mori.putpixel((x,y),hx('4FF2E0'))
+# 鍵束（腰）
+for (x,y) in [(17,21),(18,21),(18,22),(17,23),(19,23)]: kage_mori.putpixel((x,y),hx('4FF2E0'))
+kage_mori.save(OUT+"kagemori_24x32.png")
+save_anim(idle_frames(kage_mori),"kagemori_idle",166)
+
+sheet3=Image.new('RGBA',(1180,620),hx('120F1F')); D=ImageDraw.Draw(sheet3)
+def place3(img,k,x,y,label,bgc):
+    u=up(img,k); D.rectangle((x-4,y-4,x+u.width+3,y+u.height+3),fill=bgc)
+    sheet3.alpha_composite(u,(x,y)); D.text((x,y+u.height+10),label,font=font,fill=hx('E8D6C0'))
+place3(hero,8,30,30,"主人公 24×32（×8）",hx('F4F1F8'))
+for i,f in enumerate(hero_walk): place3(f,5,260+i*130,30,"歩き%d"%(i+1),hx('F4F1F8'))
+place3(kage_mori,8,30,320,"カゲモリ（色だけ裏）",hx('3A2D5C'))
+for i,f in enumerate(hero_idle): place3(f,5,260+i*130,320,"主人公 待機%d"%(i+1),hx('F4F1F8'))
+sheet3.convert('RGB').save(OUT+"preview_sheet_hero.png")
+print("hero ok")

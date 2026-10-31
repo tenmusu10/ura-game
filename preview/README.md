@@ -10,4 +10,7 @@
 | bg_303_corridor_320x180.png | 3階の廊下。303だけドアしかない（窓・メーターなし） |
 | ui_room_grid.png | 編成画面の5×5のマス。真ん中の「ドアだけ」が303 |
 | ui_kosei_tags.png | こせい札6色（8×8） |
+| hero_24x32.png / hero_idle(.gif/_strip.png) / hero_walk(.gif/_strip.png) | 主人公（仮決定の見た目：祖父のおさがりのカーディガン、合い鍵）と待機4コマ・歩き6コマ |
+| kagemori_24x32.png / kagemori_idle(.gif/_strip.png) | カゲモリ（主人公と同じ顔立ち＋鍵束、色だけ裏のパレット） |
+| preview_sheet_hero.png | 主人公とカゲモリをまとめた1枚 |
 | make_preview.py | 上の画像を作るスクリプト（`python3 make_preview.py`、Pillow が必要） |
