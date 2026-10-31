@@ -14,6 +14,7 @@ Python 3 だけで動きます（追加のライブラリはいりません）�
 | learned.py | 第3版：レベルアップで覚えるわざ24種 |
 | final4.py / f4lib.py | 第3版：ドラクエくらいの難易度で敵を逆算（夜回りの連戦つき）→ res_final4.json |
 | econ_exp.py / econ_money.py | 経験値とヒノカケラの逆算（economy.md） |
+| rusuban.py / typical.py | 留守番と家具の効果、家具と留守番を入れたときのボスの強さ（furniture.md） |
 | rescue.py | 第3版：救済策の効果 → res_rescue.json |
 
 ```
@@ -22,6 +23,8 @@ python3 rank.py     # 10分ほど
 python3 final3.py   # 10分ほど
 python3 final4.py   # 15分ほど
 python3 rescue.py   # 10分ほど
+python3 rusuban.py  # 15分ほど
+python3 typical.py  # 10分ほど
 ```
 
 ※ engine.py は第3版の設定（固有わざ1夜3回、ダメージのぶれ±20%など）になっています。第2版の数字を出し直すときは、engine.py の先頭の USES・MISS・SPREAD・ECRIT を第2版の値（2・0・(.9,1.1)・0）に戻してください。
