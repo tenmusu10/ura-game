@@ -74,11 +74,11 @@ Sunoは同じメロディを狙って出すのが苦手なので、Aの場合は
 
 ### 1-0. Sunoの使い方メモ
 
-- **Custom モード** を使う。
+- **Custom モード** を使う（いまの画面では Create → Songs の上にある「**Advanced**」がこれ。「Simple」ではない）。
   - **Style of Music**：下の各曲の Style をそのまま貼る（先頭にバイブル10章の共通前置きを入れてあります）。
   - **Lyrics**：歌なしなので、構成タグだけを入れる（各曲の「構成」欄）。
   - **Instrumental** をオンにする。
-  - **Exclude Styles**（ある場合）：`vocals, singing, choir, rap, orchestral, cinematic, epic, heroic, EDM drop, dubstep, heavy distortion`
+  - **Exclude Styles**（Styles欄の下の「More Options」を開くと出る）：`vocals, singing, choir, rap, orchestral, cinematic, epic, heroic, EDM drop, dubstep, heavy distortion`
 - **ループ**：Sunoは曲の終わりをフェードや締めで終えることが多い。いい曲ができたら、波形編集ソフト（Audacityなど）でループ区間を切り出し、Godotでは `AudioStreamOggVorbis` の `loop = true` と `loop_offset`（イントロの長さ）を設定する。
 - **メインテーマのアレンジ**（0-2 A）：まず 1-1の「M00 モチーフ」を作る → M01 → その曲の「Cover」で Style だけ差し替えて、団地・切ない場面・エンディング版を作る。
 - 1曲につき何回か生成して、**左上の光源のように「明るさの基準」をそろえる**つもりで、音量・音の明るさが近いものを選ぶ。
