@@ -13,7 +13,10 @@ SKILL={'ユズコ':'renda','ゲンゾウ':'guard','ミツキ':'p_spd','トメヨ
  'ペンタ':None,'カナエ':'blind','ゴウダ':'revenge','シズカ':None,'リョウ':'encore','ジハンキ':'p_lucky',
  'チヨノ':'p_regen','キナコ':'kuji','ボンボン':'sleep','レイジ':'p_watch','マワリ':'haste','ミチノスケ':'teikoku',
  'ミナト':'taunt','ヒナコ':'hina','ユメミ':'steal','サカキ':None,'トモシビ':'p_first','カゲモリ':'p_ura','主人公':'aikagi'}
-USES=2
+USES=3   # 固有わざ：1夜に3回（第3版）
+MISS=0.04; SPREAD=(.8,1.2); ECRIT=0.03
+LEARNED_HOOK=None
+CRIT=[0.0]
 class U:
     def __init__(s,name,grp,star,lv,side,bonus=None,skill=None,mult=1.0):
         b=bonus or {}; p=PROF.get(grp,PROF['白']); g=G(lv)*STAR.get(star,1)*mult
@@ -45,21 +48,28 @@ def hit(a,t,mult=1.0,ctx=None):
     if t.st.get('sleep'): t.st.pop('sleep')
     atk=a.atk*(0.8 if a.st.get('down') else 1)*(1.3 if getattr(a,'rage',False) else 1)
     df=t.df*(2.0 if t.taunt else 1)*(1.3 if (t.side==0 and ctx and ctx.get('watch')) else 1)
-    d=atk*atk/(atk+df)*2*mult*R.uniform(.9,1.1)
-    if a.side==0 and R.random()<.05: d*=1.5
+    if R.random()<MISS: return 0
+    d=atk*atk/(atk+df)*2*mult*R.uniform(*SPREAD)
+    if a.side==1 and R.random()<ECRIT: d*=1.8
+    if a.side==0 and R.random()<.05+CRIT[0]: d*=1.5
     if t.side==0 and ctx:
         d*=ctx.get('taken',1.0)
+        if ctx.get('niou'): d*=.75
+        kb=ctx.get('kabau')
+        if kb and kb[2]>0 and t is kb[1] and kb[0].alive(): t=kb[0]
+        if t.st.get('teppeki'): d*=.5
         if ctx.get('umbrella'): ctx['umbrella']=0; return 0
         g=ctx.get('guard')
         if g and g.alive() and t is not g: d*=.5; g.hp-=d*.5; return d
         if g is t: d*=.5
     if t.taunt: d*=.7
     t.hp-=d
+    if t.hp<=0 and getattr(t,'sutemi',False): t.sutemi=False; t.hp=1
     if t.mirror and t.alive():
         t.mirror=False; a.hp-=d
     return d
 def battle(P,E,ctx=None,maxt=400):
-    ctx=dict(ctx or {}); regen=ctx.get('regen',0)
+    ctx=dict(ctx or {}); regen=ctx.get('regen',0); CRIT[0]=0.0
     names={u.name for u in P}
     if 'カサジロウ' in names: ctx['umbrella']=1
     if 'レイジ' in names: ctx['watch']=1
@@ -106,6 +116,9 @@ def battle(P,E,ctx=None,maxt=400):
             if u.taunt: u.taunt-=1
         else:
             enemy_act(u,ap,ctx); u.t=now+100/u.spd
+        if ctx.get('niou'): ctx['niou']-=1
+        if ctx.get('kabau'): kb=ctx['kabau']; ctx['kabau']=(kb[0],kb[1],kb[2]-1) if kb[2]>1 else None
+        ctx['dead']=[p for p in P if p.hp<=0]
         if ctx.get('guard_t'):
             ctx['guard_t']-=1
             if ctx['guard_t']<=0: ctx['guard']=None
@@ -120,6 +133,7 @@ def act(u,ap,ae,ctx):
             return use(u,s2,ap,ae,tgt,low,ctx,borrowed=True)
     if s and not s.startswith('p_') and u.uses>0:
         if use(u,s,ap,ae,tgt,low,ctx): return
+    if LEARNED_HOOK and LEARNED_HOOK(u,ap,ae,tgt,low,ctx): return
     m=u.next_mult; u.next_mult=1.0
     hit(u,tgt,m)
     if s=='p_lucky' and R.random()<1/8: hit(u,tgt,2.0)

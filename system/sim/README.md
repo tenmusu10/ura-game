@@ -11,9 +11,16 @@ Python 3 だけで動きます（追加のライブラリはいりません）�
 | engine.py | 第2版：わざ・回復・状態異常つきの戦闘 |
 | rank.py / rank2.py | 第2版：住人1人ずつの戦力（res_rank.txt） |
 | final3.py | 第2版：章ごとの敵の強さの逆算（res_final2.json を使う） |
+| learned.py | 第3版：レベルアップで覚えるわざ24種 |
+| final4.py / f4lib.py | 第3版：ドラクエくらいの難易度で敵を逆算（夜回りの連戦つき）→ res_final4.json |
+| rescue.py | 第3版：救済策の効果 → res_rescue.json |
 
 ```
 python3 final2.py   # 数分
 python3 rank.py     # 10分ほど
 python3 final3.py   # 10分ほど
+python3 final4.py   # 15分ほど
+python3 rescue.py   # 10分ほど
 ```
+
+※ engine.py は第3版の設定（固有わざ1夜3回、ダメージのぶれ±20%など）になっています。第2版の数字を出し直すときは、engine.py の先頭の USES・MISS・SPREAD・ECRIT を第2版の値（2・0・(.9,1.1)・0）に戻してください。
