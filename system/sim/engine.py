@@ -49,6 +49,9 @@ def hit(a,t,mult=1.0,ctx=None):
     atk=a.atk*(0.8 if a.st.get('down') else 1)*(1.3 if getattr(a,'rage',False) else 1)
     df=t.df*(2.0 if t.taunt else 1)*(1.3 if (t.side==0 and ctx and ctx.get('watch')) else 1)
     if R.random()<MISS: return 0
+    w=getattr(t,'weak',()); rs=getattr(t,'resist',())
+    if a.grp in w: mult*=1.3
+    elif a.grp in rs: mult*=0.7
     d=atk*atk/(atk+df)*2*mult*R.uniform(*SPREAD)
     if a.side==1 and R.random()<ECRIT: d*=1.8
     if a.side==0 and R.random()<.05+CRIT[0]: d*=1.5
