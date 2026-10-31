@@ -86,10 +86,10 @@ Sunoは同じメロディを狙って出すのが苦手なので、Aの場合は
 ### 1-1. メイン・タイトル
 
 #### M01 303号室のテーマ（タイトル画面）
-- 使う場面：タイトル画面。全体のメロディの元になる曲。
+- 使う場面：タイトル画面（ゲームのタイトルは「**おぼろ団地と303号室**」）。全体のメロディの元になる曲。
 - Style：
 ```
-chiptune, 16-bit, retro game soundtrack, instrumental, loopable, title theme, nostalgic and gentle, warm square wave lead melody, soft triangle bass, light music box counter-melody, mid-tempo 96 BPM, major key with a bittersweet minor turn, memorable simple melody, small Japanese seaside town at dusk
+chiptune, 16-bit, retro game soundtrack, instrumental, loopable, title theme for a game about a hazy forgotten apartment complex and its mysterious door-only room 303, nostalgic and gentle, warm square wave lead melody, soft triangle bass, light music box counter-melody, mid-tempo 96 BPM, major key with a bittersweet minor turn, memorable simple melody, small Japanese seaside town at dusk
 ```
 - 構成：
 ```
@@ -402,7 +402,7 @@ pixel art animation, 16-bit retro game cutscene, 12fps limited animation, 320x18
 | 8 | 52–60 | ワスレモノ（ボス）のシルエット。大きな影 | `giant silhouette of a boss made of forgotten things, glowing eyes, looming over the party, dramatic but not scary` |
 | 9 | 60–66 | 霧の中、白いワンピースの少女（ミオ）がふり返る。輪郭が少し透ける | `girl in a white dress turning back in the mist, her outline slightly transparent, quiet moment` |
 | 10 | 66–70 | 主人公と顔の似た影（カゲモリ＝若いころのサカキの影）が、裏返しの団地の屋上から見下ろす | `a shadow figure who looks like the hero (his grandfather's younger self), colored in cold neon palette, standing on the roof of an upside-down apartment complex, looking down, cold moonlight` |
-| 11 | 70–75 | 夜明け、団地の前に全員集合。よく見ると3階だけ窓が1つ少ない → タイトルロゴ | `dawn, all residents gathered in front of the apartment complex, every window lit, but the 3rd floor has one window fewer than the other floors, nobody notices, title logo appears with a sparkle` |
+| 11 | 70–75 | 夜明け、団地の前に全員集合。よく見ると3階だけ窓が1つ少ない → タイトルロゴ「おぼろ団地と303号室」 | `dawn, all residents gathered in front of the apartment complex, every window lit, but the 3rd floor has one window fewer than the other floors, nobody notices, the title logo appears with a sparkle: Japanese text おぼろ団地と303号室, the 303 part styled like an old apartment door nameplate` |
 
 - カット7の [名前と見た目] は characters_30.md の「見た目（ドット絵用）」欄を英訳して入れる。
 - 0-6 B／D を選んだ場合は、カット3を「真っ暗な団地の窓に1つずつ明かりが灯る」に差し替え、最後に「3階だけ窓が1つ少ない」ことに気づかせる。
