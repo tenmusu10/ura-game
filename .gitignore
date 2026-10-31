@@ -1,0 +1,20 @@
+node_modules/
+www/
+dist/
+
+# 秘密ファイル（tools/secret-check.mjs と同じ並び。鍵は GitHub の Secrets に入れる）
+*.jks
+*.keystore
+*.p12
+*.pfx
+keystore.properties
+.env
+.env.*
+*service-account*.json
+/deploy
+/deploy.pub
+*-deploy
+*-deploy.pub
+
+# Godot 4（エディタのキャッシュ。*.import は残す）
+.godot/

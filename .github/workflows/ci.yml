@@ -1,0 +1,68 @@
+# PR と main のチェック：秘密ファイル・道具のテスト・公開前チェック・アプリのテスト（package.json の app:test があれば）
+# name と job 名は kit.config.json の ci.workflowName / ci.requiredCheck と同じにする（web-deploy.yml とガードが名前で見る）
+name: チェック
+on:
+  pull_request:
+    paths-ignore:
+      - 'social/**'
+      - '**.md'
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'social/**'
+      - '**.md'
+# 同じ PR に続けて push したら、古い実行は止める（main への push は止めない）
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    steps:
+      # main への push は、PR で緑だったのと全く同じ中身（ツリー）なら重いチェックを省く（無料枠の節約）。
+      # PR が古い main のままマージされたなど中身が違うとき、調べられなかったときは、いつも通り全部走らせる。
+      # 省いても実行は「成功」になるので、web-deploy.yml のサイト更新はそのまま動く
+      - name: PR で確かめ済みか
+        id: verified
+        if: github.event_name == 'push'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          repo="repos/$GITHUB_REPOSITORY"
+          head=$(gh api "$repo/commits/$GITHUB_SHA/pulls" --jq '.[0].head.sha // empty')
+          if [ -z "$head" ]; then echo "PR が見つからないので全部チェックします"; exit 0; fi
+          tree=$(gh api "$repo/git/commits/$GITHUB_SHA" --jq .tree.sha)
+          head_tree=$(gh api "$repo/git/commits/$head" --jq .tree.sha)
+          green=$(gh api "$repo/actions/workflows/ci.yml/runs?head_sha=$head&event=pull_request&status=success" --jq .total_count)
+          if [ "$tree" = "$head_tree" ] && [ "$green" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::PR で緑だった ${head:0:7} と同じ中身なので、チェックを省きます"
+          else
+            echo "PR の版と中身が違う（または PR のチェックが緑でない）ので全部チェックします"
+          fi
+      - uses: actions/checkout@v5
+        if: steps.verified.outputs.skip != 'true'
+      - uses: actions/setup-node@v5
+        if: steps.verified.outputs.skip != 'true'
+        with:
+          node-version: 22
+      - run: '[ ! -f package-lock.json ] || npm ci'
+        if: steps.verified.outputs.skip != 'true'
+      # 署名鍵・サービスアカウントの鍵・.env などが混ざっていないか
+      - run: node tools/secret-check.mjs
+        if: steps.verified.outputs.skip != 'true'
+      # 道具（Play・X・ガード・公開前チェック）のテスト
+      - run: npm test
+        if: steps.verified.outputs.skip != 'true'
+      # 仮置き・テスト用 ID・ダミーの連絡先が残っていないか（kit.config.json の releaseCheck）
+      - run: node tools/release-check.mjs
+        if: steps.verified.outputs.skip != 'true'
+      # アプリ自身のテスト（スモークテストなど）。package.json に "app:test" を足すとここで回る
+      - run: npm run app:test --if-present
+        if: steps.verified.outputs.skip != 'true'

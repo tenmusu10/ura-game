@@ -1,0 +1,31 @@
+{
+  "$comment": "アプリごとに変える値はこのファイルにだけ書く。各道具とワークフローは tools/kit-config.mjs 経由でここを読む。説明は tenmusu10/teck-matome の SETUP.md の「kit.config.json」。いまは企画段階なので CI・公開前チェック・秘密ファイル・ガードだけ使う（android・store・web は未設定）",
+  "app": {
+    "name": "おぼろ団地"
+  },
+  "ci": {
+    "workflowName": "チェック",
+    "requiredCheck": "check",
+    "ignore": ["social/", "*.md"]
+  },
+  "notApp": [".github", ".claude", ".gitignore", "*.md", "prompts", "story", "system", "images", "preview", "tools", "docs"],
+  "android": {
+    "package": "",
+    "gradle": "",
+    "tagPrefix": "android-vc-",
+    "firstCode": 0,
+    "notesFile": "",
+    "buildCommand": ""
+  },
+  "store": {},
+  "web": {
+    "pagesRepo": "",
+    "pagesDir": "",
+    "buildCommand": "",
+    "copy": []
+  },
+  "releaseCheck": [
+    { "files": ["**/*.gd", "**/*.tscn", "**/*.tres", "**/*.cfg", "**/*.json"], "pattern": "info@example\\.com|000-0000-0000|要確認|○○|TODO仮", "message": "仮置き・ダミーの文言が残っています" },
+    { "files": ["**/*.gd", "**/*.cfg", "**/*.json"], "pattern": "ca-app-pub-3940256099942544", "message": "Google のテスト用広告 ID のままです" }
+  ]
+}
