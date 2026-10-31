@@ -13,6 +13,7 @@ Python 3 だけで動きます（追加のライブラリはいりません）�
 | final3.py | 第2版：章ごとの敵の強さの逆算（res_final2.json を使う） |
 | learned.py | 第3版：レベルアップで覚えるわざ24種 |
 | final4.py / f4lib.py | 第3版：ドラクエくらいの難易度で敵を逆算（夜回りの連戦つき）→ res_final4.json |
+| econ_exp.py / econ_money.py | 経験値とヒノカケラの逆算（economy.md） |
 | rescue.py | 第3版：救済策の効果 → res_rescue.json |
 
 ```
