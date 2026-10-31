@@ -98,34 +98,40 @@ epic, orchestral, cinematic, heroic, choir, big drums, strings section, brass, t
 ```
 
 #### 作り方の手順
-1. **M00 モチーフ**（30秒前後）を何回か生成して、口ずさめるメロディを1つ選ぶ。
+1. **M00 モチーフ**（45秒前後。前半はメロディだけ、盛り上がりでベースとドラムが入る）を何回か生成して、口ずさめるメロディを1つ選ぶ。
 2. 選んだM00を **Extend** してM01（タイトル）にする。足すのは低音とオルゴールくらい。
 3. M01を **Cover** してM02（OP）にする。0時の場面で音色を少し冷たくするだけで、盛り上げすぎない。
 4. 以降の「303号室のテーマ」のアレンジ（団地・切ない場面・エンディング）も、このM00を元にする。
 
-#### M00 モチーフ（303号室のテーマの種・約30秒）
+#### M00 モチーフ（303号室のテーマの種・約45秒）
+**流れ**：最初は **メロディだけ**（ドラムなし・ベースなし）。後半の盛り上がりで、同じメロディのまま **ベースとドラムが入る**。ドラムは小さな部屋で鳴るくらいの軽いもの（ブラシ、軽いキック、チップのノイズ）。
+
 音色の方向を3つ用意しました。どれか1つで作り、気に入ったものを残す。
 
 | 案 | 雰囲気 | Style |
 |---|---|---|
-| **A ★おすすめ** | 夕暮れの部屋のチップチューン。古いゲーム機を小さな部屋で鳴らしている感じ | `chiptune, retro game soundtrack, instrumental, one simple memorable melody, played slowly on a single soft square wave, soft triangle bass, nostalgic and lonely, sunset light in an empty old apartment room, small room, intimate, lo-fi, worn cassette tape, gentle tape wobble, soft hiss, slightly out of tune, few instruments, quiet, 80 BPM, 30 seconds` |
-| B | 古いラジカセとオルゴール。押し入れから出てきたオルゴールの音 | `instrumental, one simple memorable melody, old music box slightly out of tune, played through an old cassette radio, faint chiptune pulse bass, nostalgic and faded, empty room at dusk, small room, intimate, lo-fi, soft hiss, tape wobble, quiet, 76 BPM, 30 seconds` |
-| C | 夕方の部屋のおもちゃのピアノ。少し調子っぱずれ | `instrumental, one simple memorable melody, toy piano and soft square wave in unison, slightly detuned, nostalgic and bittersweet, late afternoon light through a window of an old apartment, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, quiet, 82 BPM, 30 seconds` |
+| **A ★おすすめ** | 夕暮れの部屋のチップチューン。古いゲーム機を小さな部屋で鳴らしている感じ | `chiptune, retro game soundtrack, instrumental, one simple memorable melody, starts with the melody alone on a single soft square wave, no drums and no bass at first, then in the build-up a soft triangle bass and light lo-fi chip drums join under the same melody, nostalgic and lonely, sunset light in an empty old apartment room, small room, intimate, lo-fi, worn cassette tape, gentle tape wobble, soft hiss, slightly out of tune, few instruments, 80 BPM, 45 seconds` |
+| B | 古いラジカセとオルゴール。押し入れから出てきたオルゴールの音 | `instrumental, one simple memorable melody, starts with an old music box alone, slightly out of tune, no drums and no bass at first, then in the build-up a warm chiptune pulse bass and soft brush drums join under the same melody, played through an old cassette radio, nostalgic and faded, empty room at dusk, small room, intimate, lo-fi, soft hiss, tape wobble, 76 BPM, 45 seconds` |
+| C | 夕方の部屋のおもちゃのピアノ。少し調子っぱずれ | `instrumental, one simple memorable melody, starts with toy piano and soft square wave in unison alone, slightly detuned, no drums and no bass at first, then in the build-up a round bass and light lo-fi drums join under the same melody, nostalgic and bittersweet, late afternoon light through a window of an old apartment, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, 82 BPM, 45 seconds` |
 
 構成（Lyrics欄）：
 ```
 [Instrumental]
-[Melody]
-[Melody: repeat, softer]
+[Intro: melody alone, no drums, no bass]
+[Melody: still alone]
+[Build-up: bass enters, then light drums]
+[Melody: with bass and drums, a little fuller]
 [End]
 ```
 - メロディは「4小節で覚えられる、上がって下がる短いもの」を選ぶ。2回聞いて口ずさめないものは外す。
+- 最初からドラムが鳴ってしまうときは、Styleの頭に `solo melody intro` を足して生成し直す。
+- 盛り上がりでも大きくしすぎない。ドラムが目立ちすぎるときは `light drums` を `very soft brush drums` に変える。
 
 #### M01 303号室のテーマ（タイトル画面・ループ）
 - 使う場面：タイトル画面（ゲームのタイトルは「**おぼろ団地と303号室**」）。
 - 作り方：M00を **Extend**。Styleは選んだM00の案の末尾を次に差し替える。
 ```
-..., the same melody repeats, a faint music box answers it, soft triangle bass, no drums, distant evening sounds of a quiet town, small room, intimate, lo-fi, worn cassette tape, soft hiss, quiet, loopable
+..., the same melody repeats, a faint music box answers it, soft triangle bass and the same light drums from the build-up, distant evening sounds of a quiet town, small room, intimate, lo-fi, worn cassette tape, soft hiss, quiet, loopable
 ```
 - 構成：
 ```
