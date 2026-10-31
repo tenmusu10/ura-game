@@ -5,9 +5,9 @@
 
 ---
 
-## 0. 先に選んでほしいこと（方向性）
+## 0. 方向性（仮決定）
 
-ここだけ選べば、残りのプロンプトはそのまま使えます。★はおすすめ。
+2026-10-31：4つともおすすめ案（★）で仮に決めて進めています。変えたいときはここを直せば、残りのプロンプトに反映できます。
 
 ### 0-1. 同じキャラを何枚も描くときの作り方
 
@@ -32,9 +32,15 @@
 | **A ★** | 1ドット＝8×8の大きさで描かせる（24×32のキャラなら 192×256 の枠）。後でニアレストネイバーで1/8に縮小 |
 | B | 大きさは指定せず、後処理で無理やり24×32に縮める | 手直しが増える |
 
-### 0-4. 主人公の見た目（バイブルで主人公は未決定）
+### 0-4. 主人公の見た目（仮決定）
 
-**保留**：主人公は管理人ではなく「31人目の住人」で、名前はプレイヤーが付けます（2026-10-31）。主人公は行方不明の先代管理人サカキ（#28）の孫です。見た目は「主人公とストーリー章立てを決める」スレッドで決まりしだい、2-4に英文を入れます。
+主人公は「31人目の住人」で、行方不明の先代管理人サカキ（#28）の孫。名前はプレイヤーが付けます。見た目はおすすめ案で仮決定：
+
+- 20歳前後。男女どちらにも見える、短めで少しはねたこげ茶の髪
+- **祖父のおさがりの大きすぎるカーディガン**（サカキと同じ色。血のつながりが一目で分かる）
+- Tシャツ、ジーンズ、スニーカー
+- 首にひもで下げた **合い鍵1本**（固有わざ「あいかぎ」にちなむ）
+- 名札や文字は描かない
 
 ---
 
@@ -113,11 +119,11 @@ This resident is a former Kage: a forgotten object that came alive. Keep the cle
 
 2-1〜2-2の `{見た目の英文}` に入れます。元カゲ（★印）は2-3も足します。ネオン色は3色が3人ずつになるように割り振りました（たたき台）。characters_30.md 第2版に対応。
 
-**主人公（31人目の住人・見た目は保留）**
+**主人公（31人目の住人・見た目は0-4で仮決定）**
 
 | 案 | 英文 |
 |---|---|
-| 未定 | {ストーリーのスレッドで決まった見た目を英文で入れる}, the grandchild of the former caretaker Sakaki: share one small family resemblance with him (for example the same eyebrow shape or a hand-me-down cardigan). 名前はプレイヤーが付けるため、名札などに文字は描かない |
+| 仮決定 | a young person around 20 with an ambiguous, gender-neutral look, short slightly messy dark brown hair, an oversized hand-me-down cardigan from their grandfather Sakaki (mustard-brown like his), plain T-shirt, jeans, sneakers, a single spare key hanging on a string around the neck, curious kind eyes; no name tag and no text |
 
 **住人30人**
 
@@ -150,7 +156,7 @@ This resident is a former Kage: a forgotten object that came alive. Keep the cle
 | 25 | ミナト | a suntanned young ex-fisherman, rubber boots, holding a harpoon | |
 | 26 | ヒナコ ★ | a hina doll girl in a slightly faded twelve-layered kimono | #FF5FA2 |
 | 27 | ユメミ | a woman in her 30s, beret, ink-stained hands, holding a pen | |
-| 28 | サカキ | the former caretaker, an old man with white hair, worn cardigan, big ring of keys | |
+| 28 | サカキ | the former caretaker, an old man with white hair, worn mustard-brown cardigan, big ring of keys | |
 | 29 | トモシビ ★ | an old street lamp from the danchi entrance, the light bulb is its face and flickers | #FFE66B |
 | 30 | カゲモリ | the shadow of Sakaki (#28) as a young man: a young caretaker with the same face shape and eyebrows as the protagonist (his grandchild), worn cardigan, a ring of keys, colored only with the night palette (#241C3A, #3A2D5C, #7A5FB8, #B07CD9, neon #4FF2E0 eyes) | （全身が裏の色） |
 
