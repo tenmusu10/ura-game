@@ -74,48 +74,94 @@ Sunoは同じメロディを狙って出すのが苦手なので、Aの場合は
 
 ### 1-0. Sunoの使い方メモ
 
-- **Custom モード** を使う。
+- **Custom モード** を使う（いまの画面では Create → Songs の上にある「**Advanced**」がこれ。「Simple」ではない）。
   - **Style of Music**：下の各曲の Style をそのまま貼る（先頭にバイブル10章の共通前置きを入れてあります）。
   - **Lyrics**：歌なしなので、構成タグだけを入れる（各曲の「構成」欄）。
   - **Instrumental** をオンにする。
-  - **Exclude Styles**（ある場合）：`vocals, singing, choir, rap, orchestral, cinematic, EDM drop, dubstep, heavy distortion`
+  - **Exclude Styles**（Styles欄の下の「More Options」を開くと出る）：`vocals, singing, choir, rap, orchestral, cinematic, epic, heroic, EDM drop, dubstep, heavy distortion`
 - **ループ**：Sunoは曲の終わりをフェードや締めで終えることが多い。いい曲ができたら、波形編集ソフト（Audacityなど）でループ区間を切り出し、Godotでは `AudioStreamOggVorbis` の `loop = true` と `loop_offset`（イントロの長さ）を設定する。
-- **メインテーマのアレンジ**（0-2 A）：まず 1-1「303号室のテーマ」を作る → その曲の「Cover」で Style だけ差し替えて、団地・切ない場面・エンディング版を作る。
+- **メインテーマのアレンジ**（0-2 A）：まず 1-1の「M00 モチーフ」を作る → M01 → その曲の「Cover」で Style だけ差し替えて、団地・切ない場面・エンディング版を作る。
 - 1曲につき何回か生成して、**左上の光源のように「明るさの基準」をそろえる**つもりで、音量・音の明るさが近いものを選ぶ。
 
-### 1-1. メイン・タイトル
+### 1-1. メイン・タイトル（2026-10-31 作り直し）
 
-#### M01 303号室のテーマ（タイトル画面）
-- 使う場面：タイトル画面（ゲームのタイトルは「**おぼろ団地と303号室**」）。全体のメロディの元になる曲。
-- Style：
+**ねらい**：壮大にしない。「**夕暮れの、さびれた団地の一室**」で鳴っているような、小さくて少しくたびれた音。
+印象に残る **メロディを1つ（モチーフ）** 先に決めて、タイトル曲もOP曲も、そのメロディに音を少しずつ足していくだけで作る。
+
+**全曲に共通で足す言葉（部屋っぽさ）**
 ```
-chiptune, 16-bit, retro game soundtrack, instrumental, loopable, title theme for a game about a hazy forgotten apartment complex and its mysterious door-only room 303, nostalgic and gentle, warm square wave lead melody, soft triangle bass, light music box counter-melody, mid-tempo 96 BPM, major key with a bittersweet minor turn, memorable simple melody, small Japanese seaside town at dusk
+small room, intimate, lo-fi, worn cassette tape, gentle tape wobble, soft hiss, slightly out of tune, few instruments, quiet, close and dry
+```
+**Exclude Styles に入れる（壮大さを消す）**
+```
+epic, orchestral, cinematic, heroic, choir, big drums, strings section, brass, trailer, EDM, uplifting, reverb-heavy, vocals
+```
+
+#### 作り方の手順
+1. **M00 モチーフ**（45秒前後。前半はメロディだけ、盛り上がりでベースとドラムが入る）を何回か生成して、口ずさめるメロディを1つ選ぶ。
+2. 選んだM00を **Extend** してM01（タイトル）にする。足すのは低音とオルゴールくらい。
+3. M01を **Cover** してM02（OP）にする。0時の場面で音色を少し冷たくするだけで、盛り上げすぎない。
+4. 以降の「303号室のテーマ」のアレンジ（団地・切ない場面・エンディング）も、このM00を元にする。
+
+#### M00 モチーフ（303号室のテーマの種・約45秒）
+**流れ**：最初は **メロディだけ**（ドラムなし・ベースなし）。後半の盛り上がりで、同じメロディのまま **ベースとドラムが入る**。ドラムは小さな部屋で鳴るくらいの軽いもの（ブラシ、軽いキック、チップのノイズ）。
+
+音色の方向を3つ用意しました。どれか1つで作り、気に入ったものを残す。
+
+| 案 | 雰囲気 | Style |
+|---|---|---|
+| **A ★おすすめ** | 夕暮れの部屋のチップチューン。古いゲーム機を小さな部屋で鳴らしている感じ | `chiptune, retro game soundtrack, instrumental, one simple memorable melody, starts with the melody alone on a single soft square wave, no drums and no bass at first, then in the build-up a soft triangle bass and light lo-fi chip drums join under the same melody, nostalgic and lonely, sunset light in an empty old apartment room, small room, intimate, lo-fi, worn cassette tape, gentle tape wobble, soft hiss, slightly out of tune, few instruments, 80 BPM, 45 seconds` |
+| B | 古いラジカセとオルゴール。押し入れから出てきたオルゴールの音 | `instrumental, one simple memorable melody, starts with an old music box alone, slightly out of tune, no drums and no bass at first, then in the build-up a warm chiptune pulse bass and soft brush drums join under the same melody, played through an old cassette radio, nostalgic and faded, empty room at dusk, small room, intimate, lo-fi, soft hiss, tape wobble, 76 BPM, 45 seconds` |
+| C | 夕方の部屋のおもちゃのピアノ。少し調子っぱずれ | `instrumental, one simple memorable melody, starts with toy piano and soft square wave in unison alone, slightly detuned, no drums and no bass at first, then in the build-up a round bass and light lo-fi drums join under the same melody, nostalgic and bittersweet, late afternoon light through a window of an old apartment, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, 82 BPM, 45 seconds` |
+
+構成（Lyrics欄）：
+```
+[Instrumental]
+[Intro: melody alone, no drums, no bass]
+[Melody: still alone]
+[Build-up: bass enters, then light drums]
+[Melody: with bass and drums, a little fuller]
+[End]
+```
+- メロディは「4小節で覚えられる、上がって下がる短いもの」を選ぶ。2回聞いて口ずさめないものは外す。
+- 最初からドラムが鳴ってしまうときは、Styleの頭に `solo melody intro` を足して生成し直す。
+- 盛り上がりでも大きくしすぎない。ドラムが目立ちすぎるときは `light drums` を `very soft brush drums` に変える。
+
+#### M01 303号室のテーマ（タイトル画面・ループ）
+- 使う場面：タイトル画面（ゲームのタイトルは「**おぼろ団地と303号室**」）。
+- 作り方：M00を **Extend**。Styleは選んだM00の案の末尾を次に差し替える。
+```
+..., the same melody repeats, a faint music box answers it, soft triangle bass and the same light drums from the build-up, distant evening sounds of a quiet town, small room, intimate, lo-fi, worn cassette tape, soft hiss, quiet, seamless loop, no ending, no fade out
 ```
 - 構成：
 ```
-[Intro: music box alone]
-[Main Theme]
-[Bridge: bittersweet minor]
-[Main Theme: fuller]
+[Instrumental]
+[Melody]
+[Melody: music box answers]
+[Short bridge: a little sadder]
+[Melody]
 [Loop]
 ```
 
 #### M02 オープニング（OP映像用・約75秒）
 - 使う場面：OP映像（3-1）。ループしない1曲。
+- 作り方：M01を **Cover**。メロディはそのまま、場面に合わせて音色だけ変える。**盛り上がりは「少しだけ音が増える」まで**。
 - Style：
 ```
-chiptune, 16-bit, retro game soundtrack, instrumental, opening theme, starts calm then builds, dusk town to midnight mystery, square wave lead, arpeggiated synth, punchy chip drums enter at the middle, uplifting heroic finale, 120 BPM, 75 seconds
+chiptune, retro game soundtrack, instrumental, opening theme built on one simple melody, starts as a lonely square wave in an empty room at sunset, music box and soft bass join, at midnight the tone turns cold with a quiet dark arpeggio under the same melody, ends small and warm, no ending feel, the last phrase stays unresolved and flows into the title screen, no fade out, no big finale, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, 84 BPM, 75 seconds
 ```
 - 構成：
 ```
-[Intro: quiet dusk, music box]
-[Verse: town, warm]
-[Break: clock strikes midnight, sudden silence]
-[Build: dark arpeggio, mystery]
-[Chorus: heroic main theme, full drums]
-[Outro: title hit]
-[End]
+[Instrumental]
+[Intro: melody alone, sunset room]
+[Verse: music box and soft bass join]
+[Break: clock ticks, almost silence]
+[Night: same melody, colder tone, quiet arpeggio underneath]
+[Last melody: warm again, a little fuller, still small]
+[Outro: melody stops on an unresolved note, leading into the title screen]
 ```
+- **終わった感じは出さない**：OPのあとはタイトル画面（M01）に続くので、最後は「解決しないまま止まる」か、M01の頭にそのままつながる形にする。`[End]` タグは入れない。
+- OPの絵コンテ（3-1）との合わせ方：夕方の団地〜303のドア＝Intro・Verse、0時＝Break、ハザマ〜住人の登場＝Night、夜明けとタイトル＝Last melody。
 
 ### 1-2. 表（昼）＝灯野第三団地（通称おぼろ団地）・灯野市
 
@@ -495,6 +541,7 @@ ffmpeg -i input.mp4 -i palette.png -filter_complex "fps=12,scale=320:180:flags=n
 | 項目 | 決定 |
 |---|---|
 | BGMの時代感 | スーファミ寄り16bit（チップ音色＋エレピ・ストリングス・オルゴールを少し） |
+| タイトル・OP曲の音 | 壮大にしない。「夕暮れの、さびれた団地の一室」で鳴る小さな音（ローファイ、古いカセット、少し調子はずれ、楽器は少なく）。1つのメロディ（M00）に音を足して作る |
 | メインテーマ | 「303号室のテーマ」1本を、OP・団地・切ない場面・エンディングでアレンジ違いで使う。303号室が現れる場面で初めてフルで鳴る |
 | 団地のBGM | 同じ曲で3段階（序盤＝ソロ、中盤＝楽器が増える、終盤＝にぎやか） |
 | エンディング曲 | 歌なし。エンディング3種（みんなの部屋／ただいま／またいつか）で同じメロディの厚みを変える |
@@ -506,7 +553,7 @@ ffmpeg -i input.mp4 -i palette.png -filter_complex "fps=12,scale=320:180:flags=n
 
 メロディと音の明るさをそろえるため、元になる曲から作る。
 
-1. **M01 303号室のテーマ**（Suno）：何回か生成して、覚えやすいメロディを1つ選ぶ。これが全体の基準になる。
+1. **M00 モチーフ → M01 303号室のテーマ → M02 OP**（Suno）：M00で覚えやすいメロディを1つ選ぶ。これが全体の基準になる。
 2. M01をCoverして **M40（オルゴール版）・M45a／b／c（エンディング）** を作る。
 3. **M10a 団地（序盤）** を作り、Coverして **M10b・M10c**、さらに逆さま・短調にして **M21d（裏返しの団地）**。
 4. **M30 通常戦闘** を作り、音の明るさ・音量をM01とそろえる。ここまでで、序章が遊べる分の曲がそろう。
