@@ -55,7 +55,7 @@ Sunoは同じメロディを狙って出すのが苦手なので、Aの場合は
 
 | 案 | 中身 |
 |---|---|
-| **A ★おすすめ** | 「**0時の303号室**」：夕方の団地 → 3階の303のドアを住人が開けると、すぐ壁 → 0時、シャッターが境目になる → ハザマへ → 住人たちが一人ずつ登場 → タイトル |
+| **A ★おすすめ** | 「**消灯のあとの303号室**」：夕方の団地 → 3階の303のドアを住人が開けると、すぐ壁 → 終電が通りすぎ、常夜灯が消えてシャッターが境目になる → ハザマへ → 住人たちが一人ずつ登場 → タイトル |
 | B | 「**明かりの数**」：真っ暗な団地の窓に、住人が来るたび1つずつ明かりが灯る。最後に3階だけ窓が1つ少ないことに気づかせる（303号室の伏線） |
 | C | 「**主人公の一日**」：朝の掃除、内見、回覧板、夜回り…をテンポよく。コメディ寄り |
 | D | AとBの合わせ技（前半A、後半Bの窓の明かり） |
@@ -163,9 +163,9 @@ chiptune, 16-bit, retro game soundtrack, instrumental, loopable, sunset before n
 
 ### 1-3. 裏（夜）＝ハザマ
 
-#### M20 境目（0時、ハザマへ入るジングル・約6秒）
+#### M20 境目（消灯、ハザマへ入るジングル・約6秒）
 ```
-chiptune, 16-bit, retro game sound, instrumental, short jingle, clock striking midnight, descending arpeggio, reverse cymbal, warm tones turning cold and dark synth, mysterious, 6 seconds
+chiptune, 16-bit, retro game sound, instrumental, short jingle, a last train passing far away then streetlights switching off one by one, descending arpeggio, reverse cymbal, warm tones turning cold and dark synth, mysterious, 6 seconds
 ```
 構成：`[Jingle] [End]`
 
@@ -368,7 +368,7 @@ retro 16-bit game sound effect, square wave, triangle wave and noise, short, dry
 |---|---|---|---|
 | S60 | 303のドアを開けたらすぐ壁 | 0.6秒 | `old door creak open, then a dull thud against concrete, comedic, short` |
 | S65 | ドアの向こうに303号室ができる | 1.5秒 | `old door creaking open, soft whoosh of air from a new room, warm light swell, gentle magical chime` |
-| S61 | 時計が0時を打つ | 2.0秒 | `old wall clock striking midnight, retro chiptune bell, slightly eerie` |
+| S61 | 消灯（常夜灯が一斉に消える） | 2.0秒 | `fluorescent corridor lights switching off one after another with a soft click and hum fade, retro chiptune, slightly eerie` |
 | S62 | 公衆電話・ダイヤル | 0.8秒 | `retro rotary phone dial clicks, nostalgic` |
 | S63 | 街灯がつく（トモシビ） | 0.5秒 | `old street lamp flickering on, buzz then soft hum` |
 | S64 | 思い出す（記憶が戻る） | 1.2秒 | `memory recall, reverse shimmer then gentle music box note` |
@@ -388,14 +388,14 @@ pixel art animation, 16-bit retro game cutscene, 12fps limited animation, 320x18
 - 色は表＝5-3「表」パレット、裏＝5-3「裏」パレット。**キャラの色は表でも裏でも同じ**。
 - 1カット＝3〜8秒。動画AIは長いと絵がくずれるので、カットごとに作ってつなぐ。
 
-### 3-1. OP「0時の303号室」（0-6 A・約75秒・音楽 M02）
+### 3-1. OP「消灯のあとの303号室」（0-6 A・約75秒・音楽 M02）
 
 | # | 秒 | 画面 | 英語プロンプト（前置きの後ろ） |
 |---|---|---|---|
 | 1 | 0–6 | 夕方の灯野市。海と山、遠くに団地。ゆっくり右へパン | `wide shot of a small Japanese seaside town at sunset, sea and mountains, old apartment complex on the outskirts, warm orange palette, slow pan right, birds flying` |
 | 2 | 6–12 | 3階の外廊下。302と304のあいだの壁に、「303」の表札とドアだけがついている。住人がドアを開けると、すぐコンクリートの壁。「やっぱりね」と閉める。ドアのすき間に古い手紙が1通はさまっている | `3rd floor outdoor corridor of an old apartment complex, between doors 302 and 304 there is a door with a 303 nameplate set into the wall, a resident opens it and there is only a solid concrete wall right behind it, the resident shrugs and closes it, an old envelope tucked in the door gap, comedic, dusk light` |
 | 3 | 12–18 | 主人公が、空き部屋になった管理人室の前をほうきで掃く。ほとんどの窓が暗い | `the young hero sweeping in front of an empty, unused caretaker office, run-down danchi building behind with only a few lit windows, comedic idle motion, sunset turning to evening` |
-| 4 | 18–22 | 古い時計が0時。画面が一瞬止まる | `old wall clock hands reaching midnight, frame freezes, colors drain slightly` |
+| 4 | 18–22 | 遠くを終電が通りすぎ、団地の常夜灯が端から順に消える。画面が一瞬止まる | `a last train passing far in the background, the danchi corridor lights switching off one by one from the end, frame freezes, colors drain slightly` |
 | 5 | 22–28 | 閉店したシャッターの隙間からネオン色の光がもれ、画面が左右にめくれて裏のパレットへ | `closed shop shutter in a dark shopping street, cyan and pink neon light leaking from the gap, the screen peels open left and right, warm palette swaps to cold purple palette with neon` |
 | 6 | 28–36 | ハザマの全景。街を裏返した迷宮。カゲがうろつく | `underground labyrinth that looks like an upside-down version of the town, dark purple and blue, glowing neon fragments floating, small shadowy creatures wandering, slow downward pan` |
 | 7 | 36–52 | 住人が1人ずつ見得を切る（2秒×8人）。ユズコ、ゲンゾウ、ミツキ、ポチタ、マネキチ、ニボシ、サキミキ、トメヨ | `quick character pose cut-in, [名前と見た目], dynamic comedic pose, name plate, cold neon background, character colors stay warm` |
@@ -499,7 +499,7 @@ ffmpeg -i input.mp4 -i palette.png -filter_complex "fps=12,scale=320:180:flags=n
 | 団地のBGM | 同じ曲で3段階（序盤＝ソロ、中盤＝楽器が増える、終盤＝にぎやか） |
 | エンディング曲 | 歌なし。エンディング3種（みんなの部屋／ただいま／またいつか）で同じメロディの厚みを変える |
 | 効果音 | 文章プロンプトで生成AIに作らせ、足りない分をレトロ効果音メーカー（jsfxrなど）で補う |
-| OP | 「0時の303号室」：夕方の団地 → 303のドアを開けるとすぐ壁 → 0時 → ハザマ → 住人の登場 → タイトル |
+| OP | 「消灯のあとの303号室」：夕方の団地 → 303のドアを開けるとすぐ壁 → 消灯 → ハザマ → 住人の登場 → タイトル |
 | 映像の作り方 | Geminiでカットごとの1枚絵を作り、Godotの中で動かす |
 
 ## 6. 作る順番（おすすめ）

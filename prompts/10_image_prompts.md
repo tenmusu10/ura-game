@@ -215,7 +215,7 @@ Battle stance sprite, 48x48 pixels drawn at 8x scale, three-quarter view facing 
 
 ```
 {1-1 共通}
-Enemy sprite for a dungeon RPG, 32x32 pixels drawn at 8x scale (256x256). A "Kage": a forgotten thing that became a lonely, grumpy shadow creature. Subject: {カゲの英文}.
+Enemy sprite for a dungeon RPG, 32x32 pixels drawn at 8x scale (256x256). A "Kage": a forgotten everyday object (a trash bag, a torn signboard, a removed vending machine...) that became lonely and grumpy, still clearly shaped like the original object, not a humanoid and not a shapeless blob of shadow. Subject: {カゲの英文}.
 Body colored with #7A5FB8 and #B07CD9, with one neon glow color ({#4FF2E0 / #FF5FA2 / #FFE66B}) for the eyes and cracks. Eerie and a little sad, but cute rather than scary. No gore.
 {1-2} {1-4}
 ```
