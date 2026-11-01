@@ -131,7 +131,7 @@ epic, orchestral, cinematic, heroic, choir, big drums, strings section, brass, t
 - 使う場面：タイトル画面（ゲームのタイトルは「**おぼろ団地と303号室**」）。
 - 作り方：M00を **Extend**。Styleは選んだM00の案の末尾を次に差し替える。
 ```
-..., the same melody repeats, a faint music box answers it, soft triangle bass and the same light drums from the build-up, distant evening sounds of a quiet town, small room, intimate, lo-fi, worn cassette tape, soft hiss, quiet, loopable
+..., the same melody repeats, a faint music box answers it, soft triangle bass and the same light drums from the build-up, distant evening sounds of a quiet town, small room, intimate, lo-fi, worn cassette tape, soft hiss, quiet, seamless loop, no ending, no fade out
 ```
 - 構成：
 ```
@@ -148,7 +148,7 @@ epic, orchestral, cinematic, heroic, choir, big drums, strings section, brass, t
 - 作り方：M01を **Cover**。メロディはそのまま、場面に合わせて音色だけ変える。**盛り上がりは「少しだけ音が増える」まで**。
 - Style：
 ```
-chiptune, retro game soundtrack, instrumental, opening theme built on one simple melody, starts as a lonely square wave in an empty room at sunset, music box and soft bass join, at midnight the tone turns cold with a quiet dark arpeggio under the same melody, ends small and warm again, no big finale, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, 84 BPM, 75 seconds
+chiptune, retro game soundtrack, instrumental, opening theme built on one simple melody, starts as a lonely square wave in an empty room at sunset, music box and soft bass join, at midnight the tone turns cold with a quiet dark arpeggio under the same melody, ends small and warm, no ending feel, the last phrase stays unresolved and flows into the title screen, no fade out, no big finale, small room, intimate, lo-fi, worn cassette tape, soft hiss, few instruments, 84 BPM, 75 seconds
 ```
 - 構成：
 ```
@@ -158,9 +158,9 @@ chiptune, retro game soundtrack, instrumental, opening theme built on one simple
 [Break: clock ticks, almost silence]
 [Night: same melody, colder tone, quiet arpeggio underneath]
 [Last melody: warm again, a little fuller, still small]
-[Outro: single note, tape stops]
-[End]
+[Outro: melody stops on an unresolved note, leading into the title screen]
 ```
+- **終わった感じは出さない**：OPのあとはタイトル画面（M01）に続くので、最後は「解決しないまま止まる」か、M01の頭にそのままつながる形にする。`[End]` タグは入れない。
 - OPの絵コンテ（3-1）との合わせ方：夕方の団地〜303のドア＝Intro・Verse、0時＝Break、ハザマ〜住人の登場＝Night、夜明けとタイトル＝Last melody。
 
 ### 1-2. 表（昼）＝灯野第三団地（通称おぼろ団地）・灯野市
